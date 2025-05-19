@@ -161,5 +161,35 @@ public class RoommateSurveyService {
         // 일치율 계산 (백분율)
         return (double) matchCount / totalCriteria * 100.0;
     }
+    //가중치를 반영한 매칭 점수 계산
+    //고려할점 -> 각자 지정한 가중치가 다르기 때문에 내 기준 상대방의 점수와, 상대방 기준 내 점수가 다름을 유의
+    private double calculateWeightedMatchScore(RoommateSurvey survey1, RoommateSurvey survey2) {
+        //각 항목별 가중치는 1~5의 정수값
+
+        // 1) 내 가중치 총합
+        // int totalWeight = survey1.getSmokeWeight() + survey1.getDormWeight() + survey1.getCleanLevelWeight();
+        int matchCount = 0;
+
+        // 2) 각 항목 유사도에 내 가중치 곱하기
+        /*
+        int weightedSum = 0;
+        if (mine.getDormName().equals(other.getDormName())) { //기숙사의 경우 이름이 일치하면 점수
+            weightedSum += mineWeights.getDormWeight();
+        }
+        //청소 횟수의 경우는 내가 선택한 청소횟수가 가까울수록 높은 점수
+        weightedSum += mineWeights.getCleanWeight()
+                * (1.0 - Math.abs(mine.getCleanLevel() - other.getCleanLevel()) / (double)(maxCleanLevel - 1));
+
+        //흡연여부
+        if (mine.isSmoking() == other.isSmoking()) {
+            weightedSum += mineWeights.getSmokeWeight();
+        }
+        */
+
+
+        // 3) 0~100 백분율 반환
+        // return 100.0 * weightedSum / totalWeight;
+        return 0.0;
+    }
 
 }
