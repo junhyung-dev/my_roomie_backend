@@ -61,4 +61,17 @@ public class RoommateSurveyController {
 
         return ResponseEntity.ok(list);
     }
+
+    //설문 조사 삭제하기 EX) DELETE /surveys/delete?id=123
+    @DeleteMapping("/surveys/delete")
+    public ResponseEntity<Void> deleteSurvey(@RequestParam("id") long id, HttpServletRequest request) {
+        //해당 survey id를 받음
+        User currentUser = authService.getCurrentUser(request);
+        roommateSurveyService.deleteSurvey(id, currentUser);
+
+        return ResponseEntity.ok().build();
+
+    }
+
 }
+

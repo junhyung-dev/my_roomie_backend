@@ -29,6 +29,11 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse("NOT_LOGGED_IN", ex.getMessage()));
     }
 
+    @ExceptionHandler(InvalidAccessException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidAccess(InvalidAccessException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ErrorResponse("INVALID_ACCESS", ex.getMessage()));
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleAllExceptions(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("예외 발생: " + ex.getMessage());

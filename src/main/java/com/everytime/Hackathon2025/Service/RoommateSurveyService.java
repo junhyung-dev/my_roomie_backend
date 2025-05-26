@@ -6,9 +6,11 @@ import com.everytime.Hackathon2025.Dto.MatchingResultResponseDto;
 import com.everytime.Hackathon2025.Dto.RoommateSurveyRequestDto;
 import com.everytime.Hackathon2025.Dto.RoommateSurveyResponseDto;
 import com.everytime.Hackathon2025.Dto.UserSimpleResponseDto;
+import com.everytime.Hackathon2025.Exception.InvalidAccessException;
 import com.everytime.Hackathon2025.Repository.RoommateSurveyRepository;
 import com.everytime.Hackathon2025.Repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -190,6 +192,23 @@ public class RoommateSurveyService {
         // 3) 0~100 백분율 반환
         // return 100.0 * weightedSum / totalWeight;
         return 0.0;
+    }
+
+    public void deleteSurvey(long id, User requestUser) {
+        RoommateSurvey survey = roommateSurveyRepository.findById(id);
+
+        if (survey == null) {
+            throw new EntityNotFoundException("Survey not found with id: " + id);
+        }
+        //만약 survey의 author가 user게 아니라면
+        if(!survey.getUser().getUsername().equals(requestUser.getUsername())) {
+            throw new InvalidAccessException();
+
+        }
+
+        roommateSurveyRepository.deleteById(id);
+
+
     }
 
 }
