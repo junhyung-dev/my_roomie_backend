@@ -3,8 +3,6 @@ package com.everytime.Hackathon2025.Dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Getter
 @AllArgsConstructor
 public class RoommateSurveyResponseDto {
@@ -16,5 +14,8 @@ public class RoommateSurveyResponseDto {
     private String etc;
     private String createdAt;
     private boolean isMine;
-
+    private String sleepTime;
+    private String wakeUpTime;
+    private String phoneTime;
+    private String showerTime;
 }
