@@ -10,10 +10,19 @@ public class RoommateSurveyRequestDto {
     private String dormName;
     private String cleanLevel;
     private boolean smoking;
-    private String etc;
+    private boolean snoring;
 
     private String sleepTime;
     private String wakeUpTime;
-    private String phoneTime;
-    private String showerTime;
+
+    private String etc;
+
+    private int dormImportance = 3;
+    private int cleanImportance = 3;
+    private int sleepTimeImportance = 3;
+    private int wakeUpTimeImportance = 3;
+
+    private int smokingPreference = 2;
+
+    private int snoringPreference = 2;
 }

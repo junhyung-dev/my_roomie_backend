@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roommate Survey Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Roommate Survey Demo</h1>
+  <div id="message"></div>
+
+  <!-- Registration Form -->
+  <section id="register">
+    <h2>회원가입</h2>
+    <form id="registerForm">
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <input type="text" name="name" placeholder="Name" required />
+      <button type="submit">Register</button>
+    </form>
+  </section>
+
+  <!-- Login Form -->
+  <section id="login">
+    <h2>로그인</h2>
+    <form id="loginForm">
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+  </section>
+
+  <!-- Profile & Logout -->
+  <section id="profile" style="display:none;">
+    <h2>프로필</h2>
+    <div id="profileInfo"></div>
+    <button id="logoutBtn">Logout</button>
+  </section>
+
+  <!-- Tabs for Survey Management -->
+  <div id="tabsContainer" style="display:none;">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="surveyForm">📝 설문작성</button>
+      <button class="tab-btn" data-tab="surveyList">📋 설문목록</button>
+      <button class="tab-btn" data-tab="matching">🔍 매칭하기</button>
+    </div>
+
+    <!-- Survey Form Tab -->
+    <section id="surveyForm" class="tab-content active">
+      <h2>Roommate Survey</h2>
+      <form id="surveyFormElement">
+        <label>
+          기숙사
+          <select name="dormName" required>
+            <option value="">선택하세요</option>
+            <option value="봉사관">봉사관</option>
+            <option value="진리관">진리관</option>
+            <option value="화목관">화목관</option>
+            <option value="향토관">향토관</option>
+            <option value="첨성관">첨성관</option>
+            <option value="명의관">명의관</option>
+            <option value="누리관">누리관</option>
+            <option value="보람관">보람관</option>
+          </select>
+        </label>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span>일주일 청소 횟수</span>
+          <label>1회 <input type="radio" name="cleanLevel" value="1" required /></label>
+          <label>2회 <input type="radio" name="cleanLevel" value="2" /></label>
+          <label>3회 <input type="radio" name="cleanLevel" value="3" /></label>
+          <label>4회 <input type="radio" name="cleanLevel" value="4" /></label>
+          <label>5회 <input type="radio" name="cleanLevel" value="5" /></label>
+        </div>
+        <label>
+          흡연유무
+          <input type="checkbox" name="smoking" />
+        </label>
+        <textarea name="etc" placeholder="Additional info"></textarea>
+        <button type="submit">Submit Survey</button>
+      </form>
+    </section>
+
+    <!-- Survey List Tab -->
+    <section id="surveyList" class="tab-content">
+      <h2>설문조사 목록</h2>
+      <ul id="surveyListContent"></ul>
+    </section>
+
+    <!-- Matching Tab -->
+    <section id="matching" class="tab-content">
+      <h2>내 설문조사 목록</h2>
+      <div id="myMatchingSurveys">
+        <p>내 설문이 로드되는 중입니다...</p>
+      </div>
+      <button id="matchButton" class="match-btn" disabled>매칭하기</button>
+      
+      <!-- 매칭 결과 영역 -->
+      <div id="matchingResults" class="matching-results">
+        <button id="backToMatching" class="back-btn">← 매칭하기로 돌아가기</button>
+        <h2>룸메이트 매칭 결과</h2>
+        
+        <div class="results-header">
+          <div>
+            <h3>일치율 높은 룸메이트 <span id="resultsCount" class="results-count">(0)</span></h3>
+          </div>
+          <div class="sort-options">
+            <select id="sortOptions">
+              <option value="match">일치율 순</option>
+              <option value="recent">최신 등록 순</option>
+              <option value="dorm">같은 기숙사 순</option>
+            </select>
+          </div>
+        </div>
+        
+        <div id="matchResultsGrid" class="results-grid">
+          <!-- 매칭 결과가 여기에 동적으로 추가됩니다 -->
+        </div>
+        
+        <div id="noResults" class="no-results" style="display: none;">
+          매칭되는 룸메이트를 찾을 수 없습니다.
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

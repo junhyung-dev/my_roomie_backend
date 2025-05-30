@@ -11,11 +11,12 @@ public class RoommateSurveyResponseDto {
     private String dormName;
     private String cleanLevel;
     private boolean smoking;
+    private boolean snoring;
     private String etc;
     private String createdAt;
     private boolean isMine;
     private String sleepTime;
     private String wakeUpTime;
-    private String phoneTime;
-    private String showerTime;
+    //private String phoneTime;
+    //private String showerTime;
 }
