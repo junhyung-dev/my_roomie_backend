@@ -162,7 +162,7 @@ public class RoommateSurveyService {
 
 
     /**
-     * update방안 : 나한테는 ‘청결도’가 훨씬 중요한데 ‘흡연 여부’는 별로 신경 쓰지 않는다” 같은 상황을 반영할 수 있도록 수정
+     * update방안 : 나한테는 ‘주 청소횟수’가 훨씬 중요한데 ‘흡연 여부’는 별로 신경 쓰지 않는다” 같은 상황을 반영할 수 있도록 수정
      * 각 항목에 중요도 1(전혀 중요x) ~ 5(매우 중요함)을 매길 수 있도록 하여,
      * 또한, cleanLevel같이 순서형(1회~5회)의 경우, 비교대상이 3회면, 기준설문조사가 1회면, 1 - (abs(3-1))/ (5 - 1) 등으로, 비교대상과 기준 설문조사 간격이 좁을수록 높은 점수를 부여하도록
      * 기숙사명은 동일시에만 점수부여
@@ -172,7 +172,7 @@ public class RoommateSurveyService {
      * @return
      */
     private double calculateMatchingRate(RoommateSurvey survey1, RoommateSurvey survey2) {
-        int totalCriteria = 6;
+        int totalCriteria = 7;
         int matchCount = 0;
 
         // 기숙사 이름 비교
@@ -189,6 +189,10 @@ public class RoommateSurveyService {
         if (survey1.isSmoking() == survey2.isSmoking()) {
             matchCount++;
         }
+
+        //흡연 선호도 비교
+        if(survey1.getSmokingPreference() == survey2.getSmokingPreference()) matchCount++;
+
         if (survey1.isSnoring() == survey2.isSnoring())                matchCount++;
         if (survey1.getSleepTime().equals(survey2.getSleepTime()))     matchCount++;
         if (survey1.getWakeUpTime().equals(survey2.getWakeUpTime()))   matchCount++;
